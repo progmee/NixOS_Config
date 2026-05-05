@@ -1,25 +1,28 @@
 #!/bin/sh
-set -e
+# Exit on error and print each command
+set -ex
 
-# English comments for clarity
-# Navigate to config directory
+# Go to config directory
 cd /etc/nixos
 
-# Fetch latest changes from remote
+# Force fetch from remote
 git fetch origin main
+
+# Check if we actually need an update
 LOCAL=$(git rev-parse HEAD)
 REMOTE=$(git rev-parse origin/main)
 
 if [ "$LOCAL" != "$REMOTE" ]; then
-    echo "--- Update found. Resetting local state to remote ---"
+    echo "--- Changes detected. Forcing reset ---"
     
-    # FORCED RESET: This will discard any local changes in /etc/nixos
-    # to avoid merge conflicts
+    # Force local state to match remote exactly
     git reset --hard origin/main
     
-    # Rebuild the system using the new config
-    sudo nixos-rebuild switch --flake .#nixos
-    echo "--- Deployment successful ---"
+    # Run rebuild. 
+    # Use full path and ensure it doesn't try to open an interactive sudo prompt
+    /run/current-system/sw/bin/sudo /run/current-system/sw/bin/nixos-rebuild switch --flake /etc/nixos#nixos
+    
+    echo "--- Update completed successfully ---"
 else
-    echo "--- No changes detected ---"
+    echo "--- System is up to date ---"
 fi

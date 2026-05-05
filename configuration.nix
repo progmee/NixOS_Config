@@ -112,9 +112,42 @@
 
   # Useful aliases for daily workflow
   environment.shellAliases = {
-    ll = "eza -l";
+    # System monitoring aliases
+    htop = "btop";
+    top = "btop";
+
+    # Neovim aliases
     v = "nvim";
-    conf = "cd /etc/nixos";
+    vi = "nvim";
+    vim = "nvim";
+    sv = "sudo -E nvim"; # Preserves an envirement and nvim config
+
+    # Fastfetch alias
+    fastfetch = "fastfetch --logo none";
+    fetch = "fastfetch --logo none";
+
+    # Batman aliases
+    man = "batman";
+
+    # Cat aliases
+    cat = "bat --style=plain --pager=never"; # Plain output like cat but with colors
+    preview = "bat --style=numbers,changes,header"; # Rich output with line numbers and git changes
+
+    # Exa aliases
+    ls = "eza --icons"; 
+    l  = "eza -lbF --git --icons";
+    ll = "eza -lbghmuF --git --icons";
+    la = "eza -lbhHigUmuSa --time-style=long-iso --git --color-scale --icons";
+    lt = "eza --tree --level=2 --icons";
+    tree = "eza --tree --icons";
+
+    # Ripgrep aliases
+    grep = "rg";
+
+    # Fast find alias
+    find = "fd";
+
+    # System update shortcut
     rebuild = "sudo nixos-rebuild switch --flake /etc/nixos#nixos";
   };
 
