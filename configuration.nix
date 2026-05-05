@@ -3,18 +3,18 @@
 {
   imports =
     [ 
-      ./hardware-configuration.nix # Specific hardware scan results[cite: 1]
+      ./hardware-configuration.nix # Specific hardware scan results
     ];
 
-  # Bootloader settings[cite: 1]
+  # Bootloader settings
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # Network settings[cite: 1]
+  # Network settings
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
 
-  # Localization and Timezone[cite: 1]
+  # Localization and Timezone
   time.timeZone = "Europe/Paris";
   i18n.defaultLocale = "en_US.UTF-8";
   i18n.supportedLocales = [
@@ -22,10 +22,10 @@
     "ru_RU.UTF-8/UTF-8"
   ];
 
-  # Nix Package Manager settings[cite: 1]
+  # Nix Package Manager settings
   nixpkgs.config.allowUnfree = true;
   nix.settings = {
-    experimental-features = [ "nix-command" "flakes" ]; # Enable Flakes[cite: 1]
+    experimental-features = [ "nix-command" "flakes" ]; # Enable Flakes
     auto-optimise-store = true; # Deduplicate files in nix store
   };
 
@@ -36,7 +36,7 @@
     options = "--delete-older-than 7d";
   };
 
-  # GPU / NVIDIA configuration[cite: 1]
+  # GPU / NVIDIA configuration
   hardware.graphics.enable = true;
   services.xserver.videoDrivers = ["nvidia"];
   hardware.nvidia = {
@@ -47,7 +47,7 @@
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
-  # Keyboard and Console[cite: 1]
+  # Keyboard and Console
   services.xserver.xkb = {
     layout = "us,ru";
     options = "grp:alt_shift_toggle";
@@ -57,7 +57,7 @@
     useXkbConfig = true;
   };
 
-  # Sound and Input[cite: 1]
+  # Sound and Input
   security.rtkit.enable = true;
   services.pipewire = {
      enable = true;
@@ -67,14 +67,14 @@
   };
   services.libinput.enable = true;
 
-  # User account configuration[cite: 1]
+  # User account configuration
   users.users.progme = {
     isNormalUser = true;
     description = "Default admin user";
     extraGroups = [ "networkmanager" "wheel" "video" "audio" ];
     shell = pkgs.zsh; # Set Zsh as default shell
     
-    # User-specific packages[cite: 1]
+    # User-specific packages
     packages = with pkgs; [
       neovim
       tmux
@@ -91,7 +91,7 @@
     ];
   };
 
-  # System-wide packages[cite: 1]
+  # System-wide packages
   environment.systemPackages = with pkgs; [
     vim
     git
@@ -102,6 +102,7 @@
     xdg-utils
     wl-clipboard # Required for Neovim clipboard support
     nil          # Nix Language Server for LSP
+    bat-extras.batman   # Required for 'batman' alias
   ];
 
   # System shell configurations
@@ -119,20 +120,19 @@
     v = "nvim";
     vi = "nvim";
     vim = "nvim";
-    sv = "sudo -E nvim"; # Preserves an envirement and nvim config
+    sv = "sudo -E nvim"; # Preserves the environment and nvim config
 
-    # Fastfetch alias
-    fastfetch = "fastfetch --logo none";
-    fetch = "fastfetch --logo none";
+    # Fastfetch aliases (using 'ff' to avoid recursion)[cite: 1]
+    fetch = "fastfetch --logo none --structure OS:Kernel:Uptime:Packages:Shell:Display:CPU:GPU:Memory:Disk:Break";
 
     # Batman aliases
     man = "batman";
 
     # Cat aliases
-    cat = "bat --style=plain --pager=never"; # Plain output like cat but with colors
-    preview = "bat --style=numbers,changes,header"; # Rich output with line numbers and git changes
+    cat = "bat --style=plain --pager=never"; 
+    preview = "bat --style=numbers,changes,header"; 
 
-    # Exa aliases
+    # Eza (ls) aliases
     ls = "eza --icons"; 
     l  = "eza -lbF --git --icons";
     ll = "eza -lbghmuF --git --icons";
@@ -140,20 +140,18 @@
     lt = "eza --tree --level=2 --icons";
     tree = "eza --tree --icons";
 
-    # Ripgrep aliases
+    # Search and find aliases
     grep = "rg";
-
-    # Fast find alias
     find = "fd";
 
     # System update shortcut
     rebuild = "sudo nixos-rebuild switch --flake /etc/nixos#nixos";
   };
 
-  # Fonts[cite: 1]
+  # Fonts configuration
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
   ];  
 
-  system.stateVersion = "25.11"; # Initial install version[cite: 1]
+  system.stateVersion = "25.11"; # Initial install version
 }
