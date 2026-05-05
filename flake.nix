@@ -1,15 +1,15 @@
 {
-  description = "NixOS system flake";
-
+  description = "Minimal Flake";
+  
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
   };
 
   outputs = { self, nixpkgs }: {
-    nixosConfigurations.progme = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
-        ./configuration.nix
+         ./configuration.nix
       ];
     };
   };

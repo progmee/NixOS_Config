@@ -113,6 +113,32 @@
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  
+  # ===================== TMP ==================
+  security.sudo.extraRules = [{
+    users = [ "progme" ];
+    commands = [
+      { command = "/run/current-system/sw/bin/nixos-rebuild"; options = [ "NOPASSWD" ]; }
+    ];
+  }];
+
+  systemd.services.nixos-git-sync = {
+    description = "Sync NixOS config with github";
+    serviceConfig = {
+      Type = "oneshot";
+      User = "progme";
+      ExecStart = "/etc/nixos/update.sh";
+    };
+  };
+
+  systemd.timers.nixos-git-sync = {
+     wantedBy = [ "timers.target" ];
+     timerConfig = {
+       OnBootSec = "1m";
+       OnUnitActiveSec = "1m";
+       Unit = "nixos-git-sync.service";
+     };
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
