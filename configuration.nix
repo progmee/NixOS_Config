@@ -4,7 +4,6 @@
   imports =
     [ 
       ./hardware-configuration.nix # Specific hardware scan results[cite: 1]
-      ./automation.nix
     ];
 
   # Bootloader settings[cite: 1]
