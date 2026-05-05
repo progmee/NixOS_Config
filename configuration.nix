@@ -76,18 +76,21 @@
     
     # User-specific packages
     packages = with pkgs; [
+      ghostty
       neovim
       tmux
       eza
       bat
+      bat-extras.batman
       ripgrep
-      git
-      btop
       fd
+      fzf
+      zoxide
+      btop
       fastfetch
       starship
-      gcc     # Required for Treesitter in Neovim
-      gnumake # Common build tool for plugins
+      gcc
+      gnumake
     ];
   };
 
@@ -100,11 +103,8 @@
     pciutils
     usbutils
     xdg-utils
-    wl-clipboard # Required for Neovim clipboard support
-    nil          # Nix Language Server for LSP
-    bat-extras.batman   # Required for 'batman' alias
-    fzf
-    zoxide
+    wl-clipboard
+    nil
   ];
 
   programs.zoxide = {
@@ -118,6 +118,11 @@
     enableCompletion = true;
     autosuggestions.enable = true;
     syntaxHighlighting.enable = true;
+  };
+
+  programs.sway = {
+    enable = true;
+    wrapperFeatures.gtk = true;
   };
 
   programs.starship.enable = true;
