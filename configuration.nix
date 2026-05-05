@@ -103,15 +103,31 @@
     wl-clipboard # Required for Neovim clipboard support
     nil          # Nix Language Server for LSP
     bat-extras.batman   # Required for 'batman' alias
+    fzf
+    zoxide
   ];
 
+  programs.zoxide = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
   # System shell configurations
-  programs.zsh.enable = true;
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+    autosuggestions.enable = true;
+    syntaxHighlighting.enable = true;
+  };
+
   programs.starship.enable = true;
   programs.direnv.enable = true;
 
   # Useful aliases for daily workflow
   environment.shellAliases = {
+    # Zoxide replacement
+    cd = "z";
+
     # System monitoring aliases
     htop = "btop";
     top = "btop";
