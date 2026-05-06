@@ -8,7 +8,7 @@
     ./core/boot.nix
     ./core/nix-settings.nix
     ./core/localization.nix
-    ./hardware/nvidia.nix
+    ./nvidia.nix
     ./programs/shell.nix
     ./programs/fonts.nix
     ./users/progme.nix
