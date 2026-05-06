@@ -7,6 +7,12 @@
   programs.zsh.enable = true;
   programs.direnv.enable = true;
 
+  # Zoxide navigation (replaces cd)
+  programs.zoxide = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
   # Starship (System-wide for now)
   programs.starship = {
     enable = true;
