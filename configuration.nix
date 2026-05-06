@@ -118,6 +118,7 @@
     enableCompletion = true;
     autosuggestions.enable = true;
     syntaxHighlighting.enable = true;
+    promptInit = "";
   };
 
   programs.sway = {
@@ -125,7 +126,49 @@
     wrapperFeatures.gtk = true;
   };
 
-  programs.starship.enable = true;
+  programs.starship = {
+    enable = true;
+    settings = {
+      palette = "grey";
+      format = "$username$hostname$directory$fill$cmd_duration$time$line_break$character";
+
+      character = {
+        success_symbol = "[@](bold green)";
+        error_symbol = "[@](bold red)";
+      };
+
+      fill = {
+        symbol = "─";
+        style = "#222222";
+      };
+
+      directory = {
+        style = "bold white";
+        format = "[$path]($style) ";
+      };
+
+      time = {
+        disabled = false;
+        time_format = "%T";
+        style = "#444444";
+        format = "[$time]($style)";
+      };
+
+      git_branch = { symbol = "git "; };
+      python = { symbol = "py "; };
+
+      palettes.grey = {
+        grey = "#777777";
+        blue = "#777777";
+        cyan = "#777777";
+        green = "#777777";
+        magenta = "#777777";
+        red = "#777777";
+        yellow = "#777777";
+      };
+    };
+  };
+
   programs.direnv.enable = true;
 
   # Useful aliases for daily workflow
