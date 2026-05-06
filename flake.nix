@@ -1,8 +1,10 @@
+# /etc/nixos/flake.nix
+
 {
   description = "NixOS configuration flake with Home Manager";
 
   inputs = {
-    # Using unstable branch for the latest software [cite: 35]
+    # Using unstable branch for the latest software
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # Home Manager input following the system nixpkgs version
@@ -13,11 +15,11 @@
   };
 
   outputs = { self, nixpkgs, home-manager, ... }: {
-    # "nixos" matches your networking.hostName [cite: 3, 37]
+    # "nixos" matches your networking.hostName
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
-        # Main system configuration [cite: 37]
+        # Main system configuration
         ./configuration.nix
 
         # Add Home Manager as a module
@@ -25,14 +27,6 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-
-          # Define settings for your user
-          home-manager.users.progme = { pkgs, ... }: {
-            home.stateVersion = "24.11"; # Matching your system stateVersion [cite: 34]
-            
-            # This is where we will add your user-specific configs
-            programs.home-manager.enable = true;
-          };
         }
       ];
     };
