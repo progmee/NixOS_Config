@@ -1,5 +1,3 @@
-# /etc/nixos/programs/nixvim.nix
-
 { pkgs, ... }:
 
 {
@@ -7,9 +5,9 @@
     enable = true;
     defaultEditor = true;
 
-    # Basic Vim options (your preferences)
+    # Basic Vim options
     opts = {
-      number = true; 
+      number = true;
       relativenumber = false;
       shiftwidth = 2;
       tabstop = 2;
@@ -18,36 +16,20 @@
       termguicolors = false;
     };
 
-    # Theme: No-Clown-Fiesta
-    colorschemes.no-clown-fiesta = {
-      enable = true;
-      settings = {
-        transparent = false;
-        styles = {
-          comments = { italic = false; };
-          keywords = { bold = true; };
-          functions = { bold = true; };
-        };
-      };
-    };
-
-    # Plugins
+    # Essential plugins for TTY
     plugins = {
-      # Syntax highlighting
+      fzf-lua.enable = true;
+
       treesitter = {
         enable = true;
         settings.ensure_installed = [ "nix" "lua" "bash" "vim" ];
       };
 
-      # LSP (Intelligence)
       lsp = {
         enable = true;
-        servers = {
-          nixd.enable = true; # Nix language server
-        };
+        servers.nixd.enable = true;
       };
 
-      # Auto-completion
       cmp = {
         enable = true;
         settings = {
@@ -66,7 +48,7 @@
       };
     };
 
-    # Keymaps
+    # Keybindings
     globals.mapleader = " ";
     keymaps = [
       {
