@@ -9,7 +9,7 @@
     shell = pkgs.zsh;
     extraGroups = [ "networkmanager" "wheel" "video" ];
     packages = with pkgs; [
-      neovim ghostty git delta eza bat btop fastfetch fd ripgrep fzf lazygit
+      ghostty git delta eza bat btop fastfetch fd ripgrep fzf lazygit
     ];
   };
 

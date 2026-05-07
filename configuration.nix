@@ -6,10 +6,10 @@
   imports = [ 
     ./hardware-configuration.nix 
     ./core/boot.nix
-    ./programs/nvim.nix
     ./core/nix-settings.nix
     ./core/localization.nix
     ./nvidia.nix
+    ./programs/nixvim.nix
     ./programs/shell.nix
     ./programs/fonts.nix
     ./users/progme.nix
