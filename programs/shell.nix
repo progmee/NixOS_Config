@@ -4,7 +4,13 @@
 
 {
   # Shell configuration
-  programs.zsh.enable = true;
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true; 
+    autosuggestions.enable = true; 
+    syntaxHighlighting.enable = true; 
+  };
+
   programs.direnv.enable = true;
 
   # Zoxide navigation (replaces cd)
