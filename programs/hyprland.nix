@@ -1,41 +1,55 @@
+# /etc/nixos/programs/hyprland.nix
+
 { pkgs, inputs, ... }:
 
 {
   # Enable Hyprland Window Manager
   programs.hyprland = {
     enable = true;
-    xwayland.enable = true; # Required for older apps compatibility
+    xwayland.enable = true; # Required for compatibility with older apps [cite: 5]
   };
+
+  # Hint for Wayland support in Electron apps
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
+  # Required for screen sharing and screenshots in Hyprland
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
+  };
+
+  # Ambxst uses this for recording features
+  programs.gpu-screen-recorder.enable = true;
 
   # System-wide packages for the AMBXST / AGS UI
   environment.systemPackages = with pkgs; [
-    # AGS (Aylur's GTK Shell) - The UI engine from the video
+    # AGS engine from flake inputs [cite: 7]
     inputs.ags.packages.${pkgs.system}.default 
     
-    # Dependencies for the shell to work
-    bun            # Modern JS runtime for AGS scripts
-    dart-sass      # Compiles the beautiful CSS styles
-    fd             # Fast find for file searching
-    btop           # System monitor
-    networkmanager # For the Wi-Fi toggle in the UI
-    bluez          # Bluetooth support
-    brightnessctl  # Brightness control for the slider
-    wireplumber    # Audio control
+    # UI Logic & Styling dependencies [cite: 7]
+    bun            
+    dart-sass      
+    fd             
     
-    # Visuals and Wallpapers
-    swww           # Animated wallpaper daemon
-    matugen        # Generates colors from wallpapers (Material You style)
+    # Visual effects and wallpaper management [cite: 8, 9]
+    swww           
+    matugen        
     
-    # Utilities
-    wl-clipboard   # Copy/Paste support
-    grim           # Screen capture (backend)
-    slurp          # Screen region selector
-    libnotify      # Notification system
+    # Controls and Monitoring [cite: 8]
+    brightnessctl  
+    wireplumber    
+    btop           
+    
+    # Clipboard and Screenshots [cite: 9]
+    wl-clipboard   
+    grim           
+    slurp          
+    libnotify      
   ];
 
-  # Enable required services for the UI Notch/Panel
-  services.upower.enable = true;      # Battery/Power tracking
-  services.gvfs.enable = true;        # File system mounting/mounting icons
+  # Enable required background services for UI elements [cite: 10, 11]
+  services.upower.enable = true;      # Power/Battery status
+  services.gvfs.enable = true;        # Virtual filesystem (trash/mounting)
   networking.networkmanager.enable = true;
   hardware.bluetooth.enable = true;
 }

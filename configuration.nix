@@ -1,6 +1,6 @@
 # /etc/nixos/configuration.nix
 
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }: # Added 'inputs' to function arguments
 
 {
   imports = [ 
@@ -14,11 +14,13 @@
     ./programs/shell.nix
     ./programs/fonts.nix
     ./users/progme.nix
+    # Import the Ambxst NixOS module directly from the flake inputs
+    inputs.ambxst.nixosModules.default
   ];
 
-  # Network
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
 
+  # Do not change this value unless you have read the release notes
   system.stateVersion = "24.11";
 }
