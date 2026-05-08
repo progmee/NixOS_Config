@@ -5,6 +5,11 @@
 {
   # Fonts
   fonts.packages = with pkgs; [ 
-    nerd-fonts.jetbrains-mono 
+    # Main Nerd Fonts for icons and terminal
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.fira-code
+    nerd-fonts.meslo-lg
+    nerd-fonts.hack
+    nerd-fonts.symbols-only # Just icons, very useful for Waybar
   ];
 }

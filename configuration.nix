@@ -4,6 +4,7 @@
 
 {
   imports = [ 
+    ./programs/hyprland.nix
     ./hardware-configuration.nix 
     ./core/boot.nix
     ./core/nix-settings.nix
