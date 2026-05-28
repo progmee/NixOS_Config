@@ -50,4 +50,15 @@
   services.gvfs.enable = true;        # Virtual filesystem (trash/mounting)
   networking.networkmanager.enable = true;
   hardware.bluetooth.enable = true;
+
+  # Enable a hyprland service on start
+  services.displayManager = {
+    autoLogin = {
+      enable = true;
+      user = "progme";
+    };
+    defaultSession = "hyprland";
+  };
+
+  services.getty.autologinUser = "progme";
 }
