@@ -22,7 +22,7 @@
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       
-      # Passes flake inputs to all imported modules (like configuration.nix)
+      # Passes flake inputs to all imported modules
       specialArgs = { inherit inputs; };
       
       modules = [

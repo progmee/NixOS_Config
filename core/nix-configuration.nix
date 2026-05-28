@@ -1,5 +1,3 @@
-# /etc/nixos/core/nix-settings.nix
-
 { config, ... }:
 
 {

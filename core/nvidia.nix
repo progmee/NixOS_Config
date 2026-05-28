@@ -1,5 +1,3 @@
-# /etc/nixos/hardware/nvidia.nix
-
 { config, ... }:
 
 {

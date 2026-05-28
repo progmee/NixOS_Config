@@ -1,12 +1,10 @@
-# /etc/nixos/programs/hyprland.nix
-
 { pkgs, inputs, ... }:
 
 {
   # Enable Hyprland Window Manager
   programs.hyprland = {
     enable = true;
-    xwayland.enable = true; # Required for compatibility with older apps [cite: 5]
+    xwayland.enable = true; # Required for compatibility with older apps
   };
 
   # Hint for Wayland support in Electron apps
@@ -31,23 +29,23 @@
     dart-sass      
     fd             
     
-    # Visual effects and wallpaper management [cite: 8, 9]
+    # Visual effects and wallpaper management
     swww           
     matugen        
     
-    # Controls and Monitoring [cite: 8]
+    # Controls and Monitoring
     brightnessctl  
     wireplumber    
     btop           
     
-    # Clipboard and Screenshots [cite: 9]
+    # Clipboard and Screenshots
     wl-clipboard   
     grim           
     slurp          
     libnotify      
   ];
 
-  # Enable required background services for UI elements [cite: 10, 11]
+  # Enable required background services for UI elements
   services.upower.enable = true;      # Power/Battery status
   services.gvfs.enable = true;        # Virtual filesystem (trash/mounting)
   networking.networkmanager.enable = true;

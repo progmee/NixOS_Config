@@ -1,5 +1,3 @@
-# /etc/nixos/programs/shell.nix
-
 { pkgs, ... }:
 
 {

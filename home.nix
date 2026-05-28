@@ -1,5 +1,3 @@
-# /etc/nixos/users/progme.nix
-
 { pkgs, config, ... }:
 
 {

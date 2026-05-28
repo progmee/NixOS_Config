@@ -1,5 +1,3 @@
-# /etc/nixos/configuration.nix
-
 { config, lib, pkgs, inputs, ... }: # Added 'inputs' to function arguments
 
 {
@@ -7,13 +5,13 @@
     ./programs/hyprland.nix
     ./hardware-configuration.nix 
     ./core/boot.nix
-    ./core/nix-settings.nix
+    ./core/nix-configuration.nix
     ./core/localization.nix
-    ./nvidia.nix
+    ./core/nvidia.nix
     ./programs/nixvim.nix
-    ./programs/shell.nix
+    ./programs/zsh.nix
     ./programs/fonts.nix
-    ./users/progme.nix
+    ./home.nix
     # Import the Ambxst NixOS module directly from the flake inputs
     inputs.ambxst.nixosModules.default
   ];
