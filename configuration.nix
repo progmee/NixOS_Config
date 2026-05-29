@@ -8,9 +8,11 @@
     ./core/nix-configuration.nix
     ./core/localization.nix
     ./core/nvidia.nix
+    ./core/network.nix
     ./programs/nixvim.nix
     ./programs/zsh.nix
     ./programs/fonts.nix
+    ./programs/google-chrome.nix
     ./home.nix
     # Import the Ambxst NixOS module directly from the flake inputs
     inputs.ambxst.nixosModules.default

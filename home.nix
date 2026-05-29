@@ -11,7 +11,7 @@
       ghostty git delta eza bat btop fastfetch fd ripgrep fzf lazygit
     ];
 
-    hashedPassword = "$6$GYG6akJc/DQ7lOHT$93RM5rygD.H4odRI02fOjRT1m71yqWMCsy9jYjU.iPa7mh/Bur3JE.DGbhu2Nb6uEbtYodKO/ADt3R5K7BA.i."
+    hashedPassword = "$6$GYG6akJc/DQ7lOHT$93RM5rygD.H4odRI02fOjRT1m71yqWMCsy9jYjU.iPa7mh/Bur3JE.DGbhu2Nb6uEbtYodKO/ADt3R5K7BA.i.";
   };
 
   # Home manager
