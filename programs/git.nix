@@ -27,4 +27,16 @@
       };
     };
   };
+
+  systemd.services.fix-nixos-folder-permissions = {
+    script = ''
+      chown -R progme:users /etc/nixos 
+    '';
+
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+    };
+  };
 }
