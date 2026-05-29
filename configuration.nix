@@ -11,6 +11,7 @@
     ./core/network.nix
     ./programs/nixvim.nix
     ./programs/zsh.nix
+    ./programs/git.nix
     ./programs/fonts.nix
     ./programs/google-chrome.nix
     ./home.nix
