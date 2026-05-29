@@ -19,12 +19,18 @@
   # Ambxst uses this for recording features
   programs.gpu-screen-recorder.enable = true;
 
+  environment.loginShellInit = ''
+    if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
+      exec start-hyprland
+    fi
+  '';
+
   # System-wide packages for the AMBXST / AGS UI
   environment.systemPackages = with pkgs; [
-    # AGS engine from flake inputs [cite: 7]
+    # AGS engine from flake inputs
     inputs.ags.packages.${pkgs.system}.default 
     
-    # UI Logic & Styling dependencies [cite: 7]
+    # UI Logic & Styling dependencies
     bun            
     dart-sass      
     fd             
@@ -52,13 +58,13 @@
   hardware.bluetooth.enable = true;
 
   # Enable a hyprland service on start
-  services.displayManager = {
-    autoLogin = {
-      enable = true;
-      user = "progme";
-    };
-    defaultSession = "hyprland";
-  };
+  #services.displayManager = {
+  #  autoLogin = {
+  #    enable = true;
+  #    user = "progme";
+  #  };
+  #  defaultSession = "hyprland";
+  #};
 
   services.getty.autologinUser = "progme";
 }
