@@ -9,6 +9,7 @@
     ./core/localization.nix
     ./core/nvidia.nix
     ./core/network.nix
+    ./core/ssh.nix
     ./programs/nixvim.nix
     ./programs/zsh.nix
     ./programs/git.nix
