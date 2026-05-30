@@ -1,7 +1,7 @@
 { pkgs, inputs, ... }:
 
 {
-  # Enable Hyprland Window Manager
+  # Enable Hyprland Window Manager (System-wide)
   programs.hyprland = {
     enable = true;
     xwayland.enable = true; # Required for compatibility with older apps
@@ -9,6 +9,28 @@
 
   # Hint for Wayland support in Electron apps
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
+  # Declarative Home Manager configuration for user 'progme'
+  home-manager.users.progme = {
+    # Set the state version matching your NixOS release (e.g., "24.05", "24.11", etc.)
+    home.stateVersion = "24.11"; 
+
+    # Declarative Hyprland configuration via Home Manager
+    wayland.windowManager.hyprland = {
+      enable = true;
+      settings = {
+        # Configure keyboard layouts and the switching shortcut (Alt+Shift)
+        input = {
+          kb_layout = "us,ru";
+          kb_options = "grp:alt_shift_toggle";
+        };
+
+        # Additional user-specific Hyprland settings can be added here in Nix format:
+        # monitor = ",preferred,auto,1";
+        # exec-once = "swww init";
+      };
+    };
+  };
 
   # Required for screen sharing and screenshots in Hyprland
   xdg.portal = {
@@ -19,6 +41,7 @@
   # Ambxst uses this for recording features
   programs.gpu-screen-recorder.enable = true;
 
+  # Automatically launch Hyprland when logging into tty1
   environment.loginShellInit = ''
     if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
       exec start-hyprland
@@ -57,14 +80,6 @@
   networking.networkmanager.enable = true;
   hardware.bluetooth.enable = true;
 
-  # Enable a hyprland service on start
-  #services.displayManager = {
-  #  autoLogin = {
-  #    enable = true;
-  #    user = "progme";
-  #  };
-  #  defaultSession = "hyprland";
-  #};
-
+  # Enable TTY autologin for the primary user
   services.getty.autologinUser = "progme";
 }

@@ -13,7 +13,7 @@
     ./programs/nixvim.nix
     ./programs/zsh.nix
     ./programs/git.nix
-    ./programs/fonts.nix
+    ./core/fonts.nix
     ./programs/google-chrome.nix
     ./home.nix
     # Import the Ambxst NixOS module directly from the flake inputs
