@@ -1,14 +1,25 @@
 { pkgs, inputs, ... }:
 
+let
+  # Nix reads your script from the relative path and builds a package from it
+  monitorSwitcher = pkgs.writeScriptBin "hypr-monitor-switcher" (builtins.readFile ../scripts/monitor-switcher.sh);
+in
 {
   # Enable Hyprland Window Manager (System-wide)
   programs.hyprland = {
     enable = true;
     xwayland.enable = true; # Required for compatibility with older apps
   };
-
+  
   # Hint for Wayland support in Electron apps
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+    QSG_USE_SIMPLE_ANIMATION_DRIVER = "1";
+    LIBVA_DRIVER_NAME = "nvidia";
+    XDG_SESSION_TYPE = "wayland";
+    GBM_BACKEND = "nvidia-drm";
+    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+  };
 
   # Declarative Home Manager configuration for user 'progme'
   home-manager.users.progme = {
@@ -18,16 +29,38 @@
     # Declarative Hyprland configuration via Home Manager
     wayland.windowManager.hyprland = {
       enable = true;
+
       settings = {
+        misc = {
+          vfr = false;
+        };
+
+        # Trigger the script on Hyprland startup
+        "exec-once" = [
+          "hypr-monitor-switcher"
+        ];
+
         # Configure keyboard layouts and the switching shortcut (Alt+Shift)
         input = {
           kb_layout = "us,ru";
           kb_options = "grp:alt_shift_toggle";
         };
 
-        # Additional user-specific Hyprland settings can be added here in Nix format:
-        # monitor = ",preferred,auto,1";
-        # exec-once = "swww init";
+        bind = [
+          "SUPER, C, killactive,"
+
+          "SUPER, Q, exec, ghostty"
+
+          "SUPER SHIFT, left, movewindow, l"
+          "SUPER SHIFT, right, movewindow, r"
+          "SUPER SHIFT, up, movewindow, u"
+          "SUPER SHIFT, down, movewindow, d"
+        
+          "SUPER, left, movefocus, l"
+          "SUPER, right, movefocus, r"
+          "SUPER, up, movefocus, u"
+          "SUPER, down, movefocus, d"
+        ];
       };
     };
   };
@@ -62,6 +95,10 @@
     swww           
     matugen        
     
+    # Process monitoring & script dependencies
+    socat
+    monitorSwitcher
+
     # Controls and Monitoring
     brightnessctl  
     wireplumber    
