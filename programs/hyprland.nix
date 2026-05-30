@@ -60,6 +60,7 @@ in
           "SUPER, right, movefocus, r"
           "SUPER, up, movefocus, u"
           "SUPER, down, movefocus, d"
+          "SUPER, F, exec, wofi --show drun --allow-images"
         ];
       };
     };
@@ -86,29 +87,8 @@ in
     # AGS engine from flake inputs
     inputs.ags.packages.${pkgs.system}.default 
     
-    # UI Logic & Styling dependencies
-    bun            
-    dart-sass      
-    fd             
-    
-    # Visual effects and wallpaper management
-    swww           
-    matugen        
-    
-    # Process monitoring & script dependencies
-    socat
     monitorSwitcher
-
-    # Controls and Monitoring
-    brightnessctl  
-    wireplumber    
-    btop           
-    
-    # Clipboard and Screenshots
-    wl-clipboard   
-    grim           
-    slurp          
-    libnotify      
+    wofi
   ];
 
   # Enable required background services for UI elements

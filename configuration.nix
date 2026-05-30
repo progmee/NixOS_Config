@@ -15,6 +15,7 @@
     ./programs/git.nix
     ./core/fonts.nix
     ./programs/google-chrome.nix
+    ./core/aliases.nix
     ./core/user.nix
   ];
 

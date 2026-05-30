@@ -1,6 +1,11 @@
 { pkgs, ... }:
 
 {
+  environment.systemPackages = with pkgs; [
+    git
+    delta
+  ];
+
   programs.git = {
     enable = true;
 
