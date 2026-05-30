@@ -3,7 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    ambxst.url = "github:Axenide/Ambxst";
 
     home-manager = {
       url = "github:nix-community/home-manager";

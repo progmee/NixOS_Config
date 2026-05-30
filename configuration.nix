@@ -16,8 +16,6 @@
     ./core/fonts.nix
     ./programs/google-chrome.nix
     ./core/user.nix
-    # Import the Ambxst NixOS module directly from the flake inputs
-    inputs.ambxst.nixosModules.default
   ];
 
   networking.hostName = "nixos";
