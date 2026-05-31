@@ -1,8 +1,9 @@
 { pkgs, inputs, ... }:
 
 let
-  # Nix reads your script from the relative path and builds a package from it
-  monitorSwitcher = pkgs.writeScriptBin "hypr-monitor-switcher" (builtins.readFile ../scripts/monitor-switcher.sh);
+  # Create binaries from your local .sh files
+  monitor-switcher = pkgs.writeShellScriptBin "monitor-switcher" (builtins.readFile ../scripts/monitor-switcher.sh);
+  monitor-watcher = pkgs.writeShellScriptBin "monitor-watcher" (builtins.readFile ../scripts/monitor-watcher.sh);
 in
 {
   # Enable Hyprland Window Manager (System-wide)
@@ -23,7 +24,7 @@ in
 
   # Declarative Home Manager configuration for user 'progme'
   home-manager.users.progme = {
-    # Set the state version matching your NixOS release (e.g., "24.05", "24.11", etc.)
+    # Set the state version matching your NixOS release
     home.stateVersion = "24.11"; 
 
     # Declarative Hyprland configuration via Home Manager
@@ -31,14 +32,25 @@ in
       enable = true;
 
       settings = {
+        exec-once = [
+          "monitor-switcher"
+          "monitor-watcher"
+        ];
+
+        monitor = [
+          "HDMI-A-1, preferred, auto, 1.25"
+          "eDP-1, preferred, auto, 1.25"
+          ", preferred, auto, 1"
+        ];
+
+        bindm = [
+          "SUPER, mouse:272, movewindow"
+          "SUPER, mouse:273, resizewindow"
+        ];
+
         misc = {
           vfr = false;
         };
-
-        # Trigger the script on Hyprland startup
-        "exec-once" = [
-          "hypr-monitor-switcher"
-        ];
 
         # Configure keyboard layouts and the switching shortcut (Alt+Shift)
         input = {
@@ -50,6 +62,7 @@ in
           "SUPER, C, killactive,"
 
           "SUPER, Q, exec, ghostty"
+          "SUPER, F, exec, wofi --show drun --allow-images"
 
           "SUPER SHIFT, left, movewindow, l"
           "SUPER SHIFT, right, movewindow, r"
@@ -60,7 +73,31 @@ in
           "SUPER, right, movefocus, r"
           "SUPER, up, movefocus, u"
           "SUPER, down, movefocus, d"
-          "SUPER, F, exec, wofi --show drun --allow-images"
+
+          "SUPER SHIFT, 1, movetoworkspace, 1"
+          "SUPER SHIFT, 2, movetoworkspace, 2"
+          "SUPER SHIFT, 3, movetoworkspace, 3"
+          "SUPER SHIFT, 4, movetoworkspace, 4"
+          "SUPER SHIFT, 5, movetoworkspace, 5"
+          "SUPER SHIFT, 6, movetoworkspace, 6"
+          "SUPER SHIFT, 7, movetoworkspace, 7"
+          "SUPER SHIFT, 8, movetoworkspace, 8"
+          "SUPER SHIFT, 9, movetoworkspace, 9"
+          "SUPER SHIFT, 0, movetoworkspace, 10"
+
+          "SUPER, 1, workspace, 1"
+          "SUPER, 2, workspace, 2"
+          "SUPER, 3, workspace, 3"
+          "SUPER, 4, workspace, 4"
+          "SUPER, 5, workspace, 5"
+          "SUPER, 6, workspace, 6"
+          "SUPER, 7, workspace, 7"
+          "SUPER, 8, workspace, 8"
+          "SUPER, 9, workspace, 9"
+          "SUPER, 0, workspace, 10"
+
+          "SUPER, mouse_down, workspace, e+1"
+          "SUPER, mouse_up, workspace, e-1"
         ];
       };
     };
@@ -86,9 +123,10 @@ in
   environment.systemPackages = with pkgs; [
     # AGS engine from flake inputs
     inputs.ags.packages.${pkgs.system}.default 
-    
-    monitorSwitcher
     wofi
+    socat              # Utility for interacting with the Hyprland socket
+    monitor-switcher   # Our monitor switching script
+    monitor-watcher    # Our event listening script
   ];
 
   # Enable required background services for UI elements

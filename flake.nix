@@ -1,5 +1,5 @@
 {
-  description = "NixOS configuration flake with Hyprland and stunning AMBXST-style UI";
+  description = "NixOS configuration flake";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
