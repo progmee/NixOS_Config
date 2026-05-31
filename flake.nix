@@ -18,14 +18,11 @@
   };
 
   outputs = { self, nixpkgs, home-manager, nixvim, ags, ... }@inputs: {
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.laptop = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      
-      # Passes flake inputs to all imported modules
       specialArgs = { inherit inputs; };
-      
       modules = [
-        ./configuration.nix
+        ./hosts/laptop/configuration.nix
         nixvim.nixosModules.nixvim
         home-manager.nixosModules.home-manager
         {

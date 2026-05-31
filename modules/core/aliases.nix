@@ -39,7 +39,7 @@
     grep = "rg";
 
     # System update shortcut
-    rebuild = "sudo nixos-rebuild switch --flake /etc/nixos#nixos";
+    rebuild = "sudo nixos-rebuild switch --flake /etc/nixos#laptop";
     clean = "clear && sudo nix-collect-garbage -d && sudo nix-store --optimize";
   };
 }
