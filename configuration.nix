@@ -3,6 +3,7 @@
 {
   imports = [ 
     ./programs/hyprland.nix
+    ./programs/vscodium.nix
     ./hardware-configuration.nix 
     ./core/boot.nix
     ./core/nix-configuration.nix
