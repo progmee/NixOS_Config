@@ -8,6 +8,7 @@
     ./hardware-configuration.nix 
     ../../modules/core/boot.nix
     ../../modules/programs/waybar.nix
+    ../../modules/audio.nix
     ../../modules/core/nix-configuration.nix
     ../../modules/core/localization.nix
     ../../modules/core/nvidia.nix
