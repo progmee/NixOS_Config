@@ -1,7 +1,8 @@
 { config, lib, pkgs, inputs, ... }:
 
 {
-  imports = [ 
+  imports = [
+    ../../modules/screenshot.nix
     ./hardware-configuration.nix 
     ../../modules/core/boot.nix
     ../../modules/core/nix-configuration.nix
@@ -11,7 +12,7 @@
     ../../modules/core/ssh.nix
     ../../modules/core/fonts.nix
     ../../modules/core/aliases.nix
-    ../../modules/core/user.nix
+    ../../modules/core/users.nix
     ../../modules/programs/hyprland.nix
     ../../modules/programs/vscodium.nix
     ../../modules/programs/nixvim.nix

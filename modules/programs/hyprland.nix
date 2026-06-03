@@ -59,7 +59,11 @@ in
         };
 
         bind = [
+          "SUPER SHIFT, H, exec, systemctl suspend"
           "SUPER, C, killactive,"
+
+          "SUPER, PRINT, exec, grim - | satty --filename - --copy-command wl-copy --early-exit --initial-tool arrow"
+          "SUPER SHIFT, S, exec, grim -g \"$(slurp)\" - | satty --filename - --copy-command wl-copy --early-exit --initial-tool arrow"
 
           "SUPER, Q, exec, ghostty"
           "SUPER, F, exec, wofi --show drun --allow-images"
@@ -127,6 +131,7 @@ in
     socat              # Utility for interacting with the Hyprland socket
     monitor-switcher   # Our monitor switching script
     monitor-watcher    # Our event listening script
+    wl-clipboard       # Clipboard functionality
   ];
 
   # Enable required background services for UI elements
