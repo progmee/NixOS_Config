@@ -66,7 +66,6 @@ in
           "SUPER SHIFT, S, exec, grim -g \"$(slurp)\" - | satty --filename - --copy-command wl-copy --early-exit --initial-tool arrow"
 
           "SUPER, Q, exec, ghostty"
-          "SUPER, F, exec, wofi --show drun --allow-images"
 
           "SUPER SHIFT, left, movewindow, l"
           "SUPER SHIFT, right, movewindow, r"
@@ -125,9 +124,6 @@ in
 
   # System-wide packages for the AMBXST / AGS UI
   environment.systemPackages = with pkgs; [
-    # AGS engine from flake inputs
-    inputs.ags.packages.${pkgs.system}.default 
-    wofi
     socat              # Utility for interacting with the Hyprland socket
     monitor-switcher   # Our monitor switching script
     monitor-watcher    # Our event listening script

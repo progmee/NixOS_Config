@@ -2,9 +2,12 @@
 
 {
   imports = [
+    ../../modules/programs/wofi.nix
+    ../../modules/programs/waybar.nix
     ../../modules/screenshot.nix
     ./hardware-configuration.nix 
     ../../modules/core/boot.nix
+    ../../modules/programs/waybar.nix
     ../../modules/core/nix-configuration.nix
     ../../modules/core/localization.nix
     ../../modules/core/nvidia.nix
