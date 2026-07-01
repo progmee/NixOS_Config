@@ -23,6 +23,7 @@
     ../../modules/programs/zsh.nix
     ../../modules/programs/git.nix
     ../../modules/programs/google-chrome.nix
+    ../../modules/programs/awww.nix
   ];
 
   networking.hostName = "nixos";

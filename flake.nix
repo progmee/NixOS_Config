@@ -6,6 +6,7 @@
   inputs = {
     # The main NixOS repository
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    awww.url = "git+https://codeberg.org/LGFae/awww";
 
     # Home Manager for user-level package and dotfile management
     home-manager = {

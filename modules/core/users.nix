@@ -15,6 +15,6 @@
   };
 
   environment.systemPackages = with pkgs; [
-    eza bat btop fastfetch fd ripgrep fzf lazygit bat-extras.batman
+    eza bat btop fastfetch fd ripgrep fzf lazygit bat-extras.batman zip unzip
   ];
 }
