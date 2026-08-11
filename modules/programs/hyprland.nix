@@ -1,10 +1,5 @@
 { pkgs, inputs, ... }:
 
-let
-  # Create binaries from your local .sh files
-  monitor-switcher = pkgs.writeShellScriptBin "monitor-switcher" (builtins.readFile ../scripts/monitor-switcher.sh);
-  monitor-watcher = pkgs.writeShellScriptBin "monitor-watcher" (builtins.readFile ../scripts/monitor-watcher.sh);
-in
 {
   # Enable Hyprland Window Manager (System-wide)
   programs.hyprland = {
@@ -32,11 +27,6 @@ in
       enable = true;
 
       settings = {
-        exec-once = [
-          "monitor-switcher"
-          "monitor-watcher"
-        ];
-
         monitor = [
           "HDMI-A-1, preferred, auto, 1.25"
           "eDP-1, preferred, auto, 1.25"
@@ -124,9 +114,6 @@ in
 
   # System-wide packages for the AMBXST / AGS UI
   environment.systemPackages = with pkgs; [
-    socat              # Utility for interacting with the Hyprland socket
-    monitor-switcher   # Our monitor switching script
-    monitor-watcher    # Our event listening script
     wl-clipboard       # Clipboard functionality
   ];
 
