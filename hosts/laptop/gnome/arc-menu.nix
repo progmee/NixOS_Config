@@ -1,14 +1,17 @@
 { pkgs, ... }:
 
 {
+  # Install GNOME extensions
   home.packages = with pkgs; [
     gnomeExtensions.arc-menu
   ];
 
+  # Declarative configuration for the ArcMenu extension via dconf
   dconf.settings = {
     "org/gnome/shell/extensions/arc-menu" = {
       force-menu-location = "BottomCentered";
       left-panel-width = 175;
+      # Use the NixOS logo as the menu button icon
       menu-button-icon = "resource:///org/gnome/shell/extensions/arcmenu/icons/scalable/actions/distro-nixos.svg";
       menu-button-icon-size = 35;
       menu-height = 750;

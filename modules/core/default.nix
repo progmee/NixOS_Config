@@ -1,12 +1,6 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports = [
-    ./boot.nix
-    ./networking.nix
-    ./locale.nix
-    ./users.nix
-    ./system.nix
-    ./fonts.nix
-  ];
+  # Automatically and recursively import all .nix files and modules in this directory
+  imports = import ../lib/auto-import.nix ./.;
 }

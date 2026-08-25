@@ -12,9 +12,6 @@
     isNormalUser = true;
     description = "Aleksandr";
     extraGroups = [ "networkmanager" "wheel" "vboxsf" ];
-    packages = with pkgs; [
-      # thunderbird
-    ];
     shell = pkgs.zsh;
   };
 }

@@ -1,11 +1,12 @@
 { pkgs, ... }:
 
 {
-  # 1. Устанавливаем расширение Dash to Panel
+  # Install the Dash to Panel GNOME extension
   home.packages = with pkgs; [
     gnomeExtensions.dash-to-panel
   ];
 
+  # Declarative configuration for Dash to Panel via dconf
   dconf.settings = {
     "org/gnome/shell/extensions/dash-to-panel" = {
       animate-appicon-hover-animation-extent = ''{"RIPPLE":4,"PLANK":4,"SIMPLE":1}'';

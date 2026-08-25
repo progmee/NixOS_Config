@@ -13,12 +13,6 @@
     ../../modules/desktop/sound.nix
   ];
 
-  # GNOME Extensions & Environment
-  # Install requested GNOME extensions to the system environment
-  #environment.systemPackages = with pkgs.gnomeExtensions; [
-  #  clipboard-indicator    # Clipboard manager extension for GNOME
-  #];
-
   # Define the network hostname for the system
   networking.hostName = "laptop";
 
