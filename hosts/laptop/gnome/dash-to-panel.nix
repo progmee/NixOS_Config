@@ -1,0 +1,36 @@
+{ pkgs, ... }:
+
+{
+  # 1. Устанавливаем расширение Dash to Panel
+  home.packages = with pkgs; [
+    gnomeExtensions.dash-to-panel
+  ];
+
+  dconf.settings = {
+    "org/gnome/shell/extensions/dash-to-panel" = {
+      animate-appicon-hover-animation-extent = ''{"RIPPLE":4,"PLANK":4,"SIMPLE":1}'';
+      appicon-margin = 6;
+      appicon-padding = 6;
+      dot-position = "BOTTOM";
+      dot-style-focused = "DASHES";
+      dot-style-unfocused = "DASHES";
+      extension-version = 73;
+      hide-overview-on-startup = true;
+      hotkeys-overlay-combo = "TEMPORARILY";
+      leftbox-padding = 4;
+      leftbox-size = 16;
+      panel-anchors = ''{"unknown-unknown":"MIDDLE"}'';
+      panel-element-positions = ''{"unknown-unknown":[{"element":"showAppsButton","visible":false,"position":"stackedTL"},{"element":"activitiesButton","visible":false,"position":"stackedTL"},{"element":"leftBox","visible":true,"position":"centerMonitor"},{"element":"taskbar","visible":true,"position":"centerMonitor"},{"element":"centerBox","visible":true,"position":"stackedBR"},{"element":"rightBox","visible":true,"position":"stackedBR"},{"element":"systemMenu","visible":true,"position":"stackedBR"},{"element":"dateMenu","visible":true,"position":"stackedBR"},{"element":"desktopButton","visible":true,"position":"stackedBR"}]}'';
+      panel-lengths = "{}";
+      panel-positions = "{}";
+      panel-sizes = "{}";
+      prefs-opened = false;
+      status-icon-padding = 4;
+      tray-padding = 4;
+      tray-size = 16;
+      window-preview-title-position = "TOP";
+      trans-use-custom-opacity = true;
+      trans-panel-opacity = 0.9;
+    };
+  };
+}

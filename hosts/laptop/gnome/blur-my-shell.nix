@@ -1,0 +1,61 @@
+{ pkgs, ... }:
+
+{
+  home.packages = with pkgs; [
+    gnomeExtensions.blur-my-shell
+  ];
+
+  dconf.settings = {
+    "org/gnome/shell/extensions/blur-my-shell" = {
+      rounded-blur-found = false;
+      settings-version = 2;
+    };
+
+    "org/gnome/shell/extensions/blur-my-shell/appfolder" = {
+      brightness = 1.0;
+      sigma = 10;
+    };
+
+    "org/gnome/shell/extensions/blur-my-shell/applications" = {
+      pipeline = "pipeline_default";
+    };
+
+    "org/gnome/shell/extensions/blur-my-shell/coverflow-alt-tab" = {
+      pipeline = "pipeline_default";
+    };
+
+    "org/gnome/shell/extensions/blur-my-shell/dash-to-dock" = {
+      blur = true;
+      brightness = 0.6;
+      pipeline = "pipeline_default_rounded";
+      sigma = 30;
+      static-blur = true;
+      style-dash-to-dock = 0;
+    };
+
+    "org/gnome/shell/extensions/blur-my-shell/lockscreen" = {
+      pipeline = "pipeline_default";
+    };
+
+    "org/gnome/shell/extensions/blur-my-shell/overview" = {
+      pipeline = "pipeline_default";
+    };
+
+    "org/gnome/shell/extensions/blur-my-shell/panel" = {
+      brightness = 0.6;
+      corner-radius = 0;
+      override-background = false;
+      pipeline = "pipeline_default";
+      sigma = 30;
+    };
+
+    "org/gnome/shell/extensions/blur-my-shell/screenshot" = {
+      pipeline = "pipeline_default";
+    };
+
+    "org/gnome/shell/extensions/blur-my-shell/window-list" = {
+      brightness = 0.6;
+      sigma = 30;
+    };
+  };
+}
