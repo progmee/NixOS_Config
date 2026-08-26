@@ -45,7 +45,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.progme = import ./hosts/laptop/home.nix;
+            home-manager.users.progme = import ./hosts/wsl/home.nix;
           }
         ];
       };

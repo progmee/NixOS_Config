@@ -11,6 +11,7 @@
     # Include desktop and multimedia modules
     ../../modules/desktop/gnome.nix
     ../../modules/desktop/sound.nix
+    ../../modules/services/open-ssh.nix
   ];
 
   # Define the network hostname for the system

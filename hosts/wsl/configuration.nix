@@ -2,18 +2,15 @@
 
 {
   imports = [
-    # Include hardware scan results
-    ./hardware-configuration.nix
-
     # Include core configuration files
-    ../../modules/users.nix
-    ../../modules/locale.nix
-    ../../modules/networking.nix
+    ../../modules/core/users.nix
+    ../../modules/core/locale.nix
+    ../../modules/core/nix.nix
   ];
 
   wsl = {
     enable = true;
-    defaultUser = "progme"; # Укажите ваше имя пользователя
+    defaultUser = "progme";
   };
 
   # Define the network hostname for the system
