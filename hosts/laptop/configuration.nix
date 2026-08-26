@@ -15,7 +15,7 @@
   ];
 
   # Define the network hostname for the system
-  networking.hostName = "progme-laptop";
+  networking.hostName = "laptop";
 
   # Define the system state version (do not change after initial installation)
   system.stateVersion = "26.05";
