@@ -10,7 +10,7 @@
 
   # Allow Home Manager to manage itself
   programs.home-manager.enable = true;
-
+  
   # Import all individual program modules (each program lives in its own file)
   imports = [
     ../../modules/programs/cli

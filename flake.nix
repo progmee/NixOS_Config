@@ -11,13 +11,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Подключаем официальный репозиторий NixOS-WSL
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
   };
 
   outputs = { self, nixpkgs, home-manager, nixos-wsl, ... }: {
     nixosConfigurations = {
-      # Профиль для обычного ноутбука ("железо")
       laptop = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
@@ -33,7 +31,6 @@
         ];
       };
 
-      # Новый профиль для WSL
       wsl = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
