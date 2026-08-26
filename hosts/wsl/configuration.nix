@@ -12,8 +12,10 @@
   wsl = {
     enable = true;
     defaultUser = "progme";
+    wslConf = {
+      interop.appendWindowsPath = false;
+    };
   };
-  wsl.interop.includePath = false;
 
   # Define the network hostname for the system
   networking.hostName = "wsl";
