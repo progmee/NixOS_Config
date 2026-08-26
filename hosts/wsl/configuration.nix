@@ -5,15 +5,19 @@
     # Include hardware scan results
     ./hardware-configuration.nix
 
-    # Include core system modules (automatically loads default.nix from core folder)
-    ../../modules/core
-
-    # Include multimedia modules
-    ../../modules/desktop/sound.nix
+    # Include core configuration files
+    ../../modules/users.nix
+    ../../modules/locale.nix
+    ../../modules/networking.nix
   ];
 
+  wsl = {
+    enable = true;
+    defaultUser = "progme"; # Укажите ваше имя пользователя
+  };
+
   # Define the network hostname for the system
-  networking.hostName = "laptop";
+  networking.hostName = "nixos-wsl";
 
   # Define the system state version (do not change after initial installation)
   system.stateVersion = "26.05";
