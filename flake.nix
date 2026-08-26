@@ -10,10 +10,14 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Подключаем официальный репозиторий NixOS-WSL
+    nixos-wsl.url = "github:nix-community/NixOS-WSL";
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }: {
+  outputs = { self, nixpkgs, home-manager, nixos-wsl, ... }: {
     nixosConfigurations = {
+      # Профиль для обычного ноутбука ("железо")
       laptop = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
@@ -24,8 +28,23 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            
-            # User-specific configuration for 'progme'
+            home-manager.users.progme = import ./hosts/laptop/home.nix;
+          }
+        ];
+      };
+
+      # Новый профиль для WSL
+      wsl = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          nixos-wsl.nixosModules.default # Connect wsl as a module for flake
+          ./hosts/wsl/configuration.nix
+          
+          # Integrate Home Manager as a NixOS module
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
             home-manager.users.progme = import ./hosts/laptop/home.nix;
           }
         ];
