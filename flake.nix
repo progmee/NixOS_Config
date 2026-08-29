@@ -20,7 +20,7 @@
         system = "x86_64-linux";
         modules = [
           ./hosts/laptop/configuration.nix
-          
+
           # Integrate Home Manager as a NixOS module
           home-manager.nixosModules.home-manager
           {
@@ -36,7 +36,7 @@
         modules = [
           nixos-wsl.nixosModules.default # Connect wsl as a module for flake
           ./hosts/wsl/configuration.nix
-          
+
           # Integrate Home Manager as a NixOS module
           home-manager.nixosModules.home-manager
           {

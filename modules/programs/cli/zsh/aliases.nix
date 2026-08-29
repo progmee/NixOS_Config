@@ -40,7 +40,7 @@
     grep = "rg";
 
     # System maintenance and update shortcuts
-    rebuild = "sudo nixos-rebuild switch --flake ~/.nixos-config#$(hostname)";
+    rebuild = "sudo nixos-rebuild switch --flake ~/.nixos-config#$(hostname) --impure";
     clean = "clear && sudo nix-collect-garbage -d && sudo nix-store --optimize";
 
     # Simple alias to list and filter shell aliases
