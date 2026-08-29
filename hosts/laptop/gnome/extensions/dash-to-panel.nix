@@ -26,7 +26,7 @@
       panel-element-positions = ''{"0":[{"element":"showAppsButton","visible":false,"position":"stackedTL"},{"element":"activitiesButton","visible":false,"position":"stackedTL"},{"element":"leftBox","visible":true,"position":"centerMonitor"},{"element":"taskbar","visible":true,"position":"centerMonitor"},{"element":"centerBox","visible":true,"position":"stackedBR"},{"element":"rightBox","visible":true,"position":"stackedBR"},{"element":"systemMenu","visible":true,"position":"stackedBR"},{"element":"dateMenu","visible":true,"position":"stackedBR"},{"element":"desktopButton","visible":true,"position":"stackedBR"}]}'';
       
       panel-lengths = ''{"0":100}'';
-      panel-positions = ''{"0":"BOTTOM"}''; # или оставьте BOTTOM в зависимости от того, куда хотите закрепить
+      panel-positions = ''{"0":"BOTTOM"}'';
       panel-sizes = ''{"0":48}'';
       
       prefs-opened = false;
