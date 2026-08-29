@@ -18,10 +18,16 @@
       nightthemeswitcher-ondemand-keybinding = [ "<Shift><Super>t" ];
       
       # Shell command executed at sunrise (light cursor theme and light shell theme)
-      sunrise = "gsettings set org.gnome.desktop.interface cursor-theme 'moga-white' && dconf write /org/gnome/shell/extensions/user-theme/name \"'fluent-gtk-theme-master-Light'\"";
+      sunrise = ''
+        gsettings set org.gnome.desktop.interface cursor-theme 'moga-white'
+        dconf write /org/gnome/shell/extensions/user-theme/name "'fluent-gtk-theme-master-Light'"
+      '';
       
       # Shell command executed at sunset (dark cursor theme and dark shell theme)
-      sunset = "gsettings set org.gnome.desktop.interface cursor-theme 'moga-dark' && dconf write /org/gnome/shell/extensions/user-theme/name \"'fluent-gtk-theme-master-Dark'\"";
+      sunset = ''
+        gsettings set org.gnome.desktop.interface cursor-theme 'moga-dark'
+        dconf write /org/gnome/shell/extensions/user-theme/name "'fluent-gtk-theme-master-Dark'"
+      '';
     };
   };
 }

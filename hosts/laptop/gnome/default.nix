@@ -6,6 +6,12 @@
   ];
 
   dconf.settings = {
+    "org/gnome/desktop/wm/preferences" = {
+      button-layout = "appmenu:minimize,maximize,close";
+    };
+  };
+
+  dconf.settings = {
     "org/gnome/shell" = {
       check-extension-version = false;
       disable-user-extensions = false;
@@ -14,17 +20,10 @@
         "clipboard-indicator@tudmotu.com"
         "dash-to-panel@jderose9.github.com"
         "arcmenu@arcmenu.com"
-        "night-theme-switcher@romainvigier.fr"
-        "blur-my-shell@aunetrc"
+        "nightthemeswitcher@romainvigier.fr"
+        "blur-my-shell@aunetx"
         "date-menu-formatter@marcinjakubowski.github.com"
-        "appindicator@gnuton.github.com"
       ];
-    };
-  };
-
-  dconf.settings = {
-    "org/gnome/desktop/wm/preferences" = {
-      button-layout = "appmenu:minimize,maximize,close";
     };
   };
 }
