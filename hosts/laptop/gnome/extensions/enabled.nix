@@ -14,6 +14,7 @@
         "nightthemeswitcher@romainvigier.fr"
         "blur-my-shell@aunetx"
         "date-menu-formatter@marcinjakubowski.github.com"
+        "no-overview@fthx"
       ];
     };
   };
