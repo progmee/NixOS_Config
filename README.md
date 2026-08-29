@@ -1,10 +1,13 @@
 # NixOS Configuration
 
+![Screenshot of desktop with console](assets/preview/desktop-with-console.png)
+
 Personal NixOS and Home Manager configurations structured for modularity, reproducibility, and clean management across multiple machines.
 
 ## Project Structure
 
-~/.nixos/
+```text
+~/.nixos-config/
 ├── .vscode
 ├── assets
 │   ├── cursors
@@ -25,6 +28,7 @@ Personal NixOS and Home Manager configurations structured for modularity, reprod
     │   └── cli
     │       └── zsh
     └── services
+```
 
 ## Directory Overview
 
@@ -37,14 +41,13 @@ Personal NixOS and Home Manager configurations structured for modularity, reprod
   - **`lib/`**: Custom helper functions or shared logic.
 - **`assets/`**: Static resources including themes, cursor packs (`moga-dark`, `moga-white`), and wallpapers.
 
-## Installation & Setup
+## Prerequisites & Secrets
 
-1. Place the configuration repository directory inside your home folder as `.nixos` (`~/.nixos`).
+This configuration relies on an external local secrets file located outside the repository to keep credentials secure.
 
-## Usage
+Create a file named `.nixos-secrets.nix` in your home directory (`/home/YOUR_USERNAME/.nixos-secrets.nix`):
 
-To apply updates for the laptop configuration:
-
-rebuild
-
-*(Note: `rebuild` maps to a preconfigured alias pointing to your flake path inside `~/.nixos`)*
+```nix
+{
+  home-wifi-password = "your_actual_password";
+}
