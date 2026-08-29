@@ -5,7 +5,7 @@
   programs.vscodium = {
     enable = true;
 
-    # Default profile configuration (updated Home Manager syntax)
+    # Default profile configuration
     profiles.default = {
       # Essential extensions for development and Nix ecosystem support
       extensions = with pkgs.vscode-extensions; [
@@ -15,6 +15,12 @@
         # Full Nix language support with formatting and error reporting
         jnoortheen.nix-ide
       ];
+
+      # Editor font configuration including Nerd Font Mono
+      userSettings = {
+        "editor.fontFamily" = "'JetBrainsMono Nerd Font', 'Droid Sans Mono', 'monospace', monospace";
+        "editor.fontSize" = 14;
+      };
     };
   };
 }
