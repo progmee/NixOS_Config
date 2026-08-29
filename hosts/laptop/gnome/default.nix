@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ lib, ... }:
 
 {
   imports = (import ../../../modules/lib/auto-import.nix ./.) ++ [
@@ -19,6 +19,12 @@
         "date-menu-formatter@marcinjakubowski.github.com"
         "appindicator@gnuton.github.com"
       ];
+    };
+  };
+
+  dconf.settings = {
+    "org/gnome/desktop/wm/preferences" = {
+      button-layout = "appmenu:minimize,maximize,close";
     };
   };
 }

@@ -8,6 +8,10 @@
   boot.loader.grub = {
     enable = true;
     efiSupport = true;
-    device = "nodev"; # Раскомментируйте, если используется UEFI (обычно требуется для EFI)
+    device = "nodev";
+    useOSProber = true;
+    gfxmodeEfi = "1920x1080";
+
+    theme = pkgs.sleek-grub-theme;
   };
 }

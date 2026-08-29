@@ -11,13 +11,17 @@
   services.displayManager.gdm.enable = true;
   services.desktopManager.gnome.enable = true;
 
-  # Configure keyboard layout in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
-
   location.provider = "geoclue2"; # Enable location provider
+  services.geoclue2.enable = true;
+
+  programs.dconf.enable = true;
+
+  # Configure keyboard layout system-wide (works for Wayland/GNOME sessions too)
+  services.xserver.xkb = {
+    layout = "us,ru";
+    variant = "";
+    options = "grp:alt_shift_toggle";
+  };
 
   # Exclude unnecessary default GNOME applications and utilities
   environment.gnome.excludePackages = with pkgs; [
