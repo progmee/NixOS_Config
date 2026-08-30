@@ -6,7 +6,7 @@
     ../../modules/core/users.nix
     ../../modules/core/locale.nix
     ../../modules/core/nix.nix
-    ../../modules/services/open-ssh.nix
+    ../../modules/services
   ];
 
   wsl = {
