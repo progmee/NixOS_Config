@@ -7,6 +7,9 @@
     ../../modules/core/locale.nix
     ../../modules/core/nix.nix
     ../../modules/services
+
+    # Fix WSL visibility on VSCodium
+    ./nix-ld.nix
   ];
 
   wsl = {

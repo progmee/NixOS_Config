@@ -30,11 +30,11 @@
     preview = "bat --style=numbers,changes,header";
 
     # Eza (modern ls replacement) aliases with icons and formatting
-    ls = "eza --icons";
-    l  = "eza -lbF --git --icons";
-    ll = "eza -lbghmuF --git --icons";
-    lt = "eza --tree --level=2 --icons";
-    tree = "eza --tree --icons";
+    ls = "eza --icons=always";
+    l  = "eza -lbF --git --icons=always";
+    ll = "eza -lbghmuF --git --icons=always";
+    lt = "eza --tree --level=2 --icons=always";
+    tree = "eza --tree --icons=always";
 
     # Ripgrep search replacement for grep
     grep = "rg";
