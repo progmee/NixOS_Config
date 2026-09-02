@@ -42,8 +42,18 @@
     # System maintenance and update shortcuts
     rebuild = "sudo nixos-rebuild switch --flake ~/.nixos-config#$(hostname) --impure";
     clean = "clear && sudo nix-collect-garbage -d && sudo nix-store --optimize";
-
-    # Simple alias to list and filter shell aliases
-    sal = "alias | command grep -i";
   };
+
+  # Custom shell function for devShells with argument support
+  programs.zsh.initContent = ''
+    shell() {
+      if [ "$1" ]; then
+        nix develop "$HOME/.nixos-config#$1"
+      else
+        echo "Available devShells:"
+        nix eval --raw "$HOME/.nixos-config#devShells.x86_64-linux" --apply 'attrs: builtins.concatStringsSep "\n" (builtins.attrNames attrs)' 2>/dev/null
+        echo ""
+      fi
+    }
+  '';
 }
