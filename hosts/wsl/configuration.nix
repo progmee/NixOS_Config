@@ -9,7 +9,7 @@
     ../../modules/services
 
     # Fix WSL visibility on VSCodium
-    ./nix-ld.nix
+    ./vscodium.nix
   ];
 
   wsl = {
