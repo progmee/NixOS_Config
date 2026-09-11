@@ -24,7 +24,7 @@
     };
 
     # Dedicated Java development profile configuration
-    profiles.java = {
+    profiles.Java = {
       # Essential extensions for Java development and building
       extensions = with pkgs.vscode-extensions; [
         # Comprehensive Java language support, refactoring, and navigation
@@ -48,6 +48,28 @@
         "java.configuration.updateBuildConfiguration" = "automatic";
         "editor.fontFamily" = "'JetBrainsMono Nerd Font', 'Droid Sans Mono', 'monospace', monospace";
         "editor.fontSize" = 14;
+      };
+    };
+
+    # Dedicated OCaml development profile configuration
+    profiles.OCaml = {
+      # Essential extensions for OCaml development, syntax, and tooling
+      extensions = with pkgs.vscode-extensions; [
+        # Full OCaml language support and LSP integration
+        ocamllabs.ocaml-platform
+      ];
+
+      # Specific editor settings optimized for OCaml development
+      userSettings = {
+        "editor.fontFamily" = "'JetBrainsMono Nerd Font', 'Droid Sans Mono', 'monospace', monospace";
+        "editor.fontSize" = 14;
+        # Use the allowed 'global' sandbox mode
+        "ocaml.sandbox" = {
+          "kind" = "global";
+        };
+        # Point directly to the OCaml LSP server binary from Nix
+        "ocaml.server.path" = "/etc/profiles/per-user/progme/bin/ocamllsp";
+        "ocaml.compiler.path" = "/etc/profiles/per-user/progme/bin/ocaml";
       };
     };
   };
