@@ -46,6 +46,7 @@ in
         vscjava.vscode-java-test
         vscjava.vscode-maven
         vscjava.vscode-java-dependency
+        vscjava.vscode-gradle
       ]);
       userSettings = commonSettings // {
         "java.configuration.updateBuildConfiguration" = "automatic";
