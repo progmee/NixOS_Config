@@ -20,6 +20,9 @@
     };
   };
 
+  # Disable wireless controlling service to prevent errors
+  systemd.services.wpa_supplicant.enable = false;
+
   # Define the network hostname for the system
   networking.hostName = "wsl";
 
