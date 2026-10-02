@@ -14,5 +14,6 @@
   # Import all individual program modules (each program lives in its own file)
   imports = [
     ../../modules/programs/cli
+    ../../modules/programs/dev
   ];
 }
