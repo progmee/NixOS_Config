@@ -66,5 +66,36 @@ in
         "ocaml.compiler.path" = "/etc/profiles/per-user/progme/bin/ocaml";
       };
     };
+
+    # Dedicated profile for C++ and competitive programming
+    profiles."C++" = {
+      extensions = commonExtensions ++ [
+        pkgs.vscode-extensions.formulahendry.code-runner
+        # Kylin C++ Pack downloaded directly from Open VSX
+        (pkgs.vscode-utils.extensionFromVscodeMarketplace {
+          publisher = "KylinIdeTeam";
+          name = "kylin-cpp-pack";
+          version = "0.3.0";
+          sha256 = "sha256-mYU6Ivx6CPPjdeI5+/oDxECjmfC3c2UiXqFflv6e1oo=";
+          sourceUri = "https://open-vsx.org/api/KylinIdeTeam/kylin-cpp-pack/0.3.0/file/KylinIdeTeam.kylin-cpp-pack-0.3.0.vsix";
+        })
+      ];
+      userSettings = commonSettings // {
+        "C_Cpp.default.cppStandard" = "c++20";
+        "code-runner.executorMap" = {
+          "cpp" = "cd $dir && g++ -O3 -std=c++20 $filename -o $filenameWithoutExt.out && $dir/$filenameWithoutExt.out";
+        };
+        "code-runner.runInTerminal" = true;
+      };
+      
+      # Bind F5 to run Code Runner
+      keybindings = [
+        {
+          key = "f5";
+          command = "code-runner.run";
+          when = "editorTextFocus && editorLangId == 'cpp'";
+        }
+      ];
+    };
   };
 }
