@@ -70,32 +70,34 @@ in
     # Dedicated profile for C++ and competitive programming
     profiles."C++" = {
       extensions = commonExtensions ++ [
-        pkgs.vscode-extensions.formulahendry.code-runner
-        # Kylin C++ Pack downloaded directly from Open VSX
+        # Kylin Clangd
         (pkgs.vscode-utils.extensionFromVscodeMarketplace {
           publisher = "KylinIdeTeam";
-          name = "kylin-cpp-pack";
-          version = "0.3.0";
-          sha256 = "sha256-mYU6Ivx6CPPjdeI5+/oDxECjmfC3c2UiXqFflv6e1oo=";
-          sourceUri = "https://open-vsx.org/api/KylinIdeTeam/kylin-cpp-pack/0.3.0/file/KylinIdeTeam.kylin-cpp-pack-0.3.0.vsix";
+          name = "kylin-clangd";
+          version = "0.6.3";
+          sha256 = "sha256-KG8Nv1skUNtcn5WWBXAm0PUd1acOl2p45cijresBuWk=";
+          sourceUri = "https://open-vsx.org/api/KylinIdeTeam/kylin-clangd/0.6.3/file/KylinIdeTeam.kylin-clangd-0.6.3.vsix";
+        })
+        # Kylin CMake Workflow / Tools
+        (pkgs.vscode-utils.extensionFromVscodeMarketplace {
+          publisher = "KylinIdeTeam";
+          name = "kylin-cmake-tools";
+          version = "0.4.3";
+          sha256 = "sha256-slQyRSqnjt4J/GhE7lDEke2hEZDd+8IIGSf+flLeolw=";
+          sourceUri = "https://open-vsx.org/api/KylinIdeTeam/kylin-cmake-tools/0.4.3/file/KylinIdeTeam.kylin-cmake-tools-0.4.3.vsix";
+        })
+        # C/C++ Debug
+        (pkgs.vscode-utils.extensionFromVscodeMarketplace {
+          publisher = "KylinIdeTeam";
+          name = "cppdebug";
+          version = "0.4.0";
+          sha256 = "sha256-BeFmVrZnzyF2MAl7hAKFc17UUg2ovO5clfeDU9riSrY=";
+          sourceUri = "https://open-vsx.org/api/KylinIdeTeam/cppdebug/0.4.0/file/KylinIdeTeam.cppdebug-0.4.0.vsix";
         })
       ];
       userSettings = commonSettings // {
         "C_Cpp.default.cppStandard" = "c++20";
-        "code-runner.executorMap" = {
-          "cpp" = "cd $dir && g++ -O3 -std=c++20 $filename -o $filenameWithoutExt.out && $dir/$filenameWithoutExt.out";
-        };
-        "code-runner.runInTerminal" = true;
       };
-      
-      # Bind F5 to run Code Runner
-      keybindings = [
-        {
-          key = "f5";
-          command = "code-runner.run";
-          when = "editorTextFocus && editorLangId == 'cpp'";
-        }
-      ];
     };
   };
 }
