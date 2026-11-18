@@ -7,6 +7,8 @@ pkgs.mkShell {
       uvicorn
     ]))
     pkgs.git
+    pkgs.php                                   # PHP interpreter for web development
+    pkgs.phpPackages.composer                  # Dependency manager for PHP (Composer)
   ];
 
   shellHook = ''

@@ -19,14 +19,6 @@ let
   };
 in
 {
-  # Package set required for RISC-V architecture development, web development, and execution
-  home.packages = with pkgs; [
-    pkgsCross.riscv64-embedded.stdenv.cc  # Cross-compiler toolchain (gcc, as, ld)
-    spike                                 # Official RISC-V ISA simulator
-    php                                   # PHP interpreter for web development
-    phpPackages.composer                  # Dependency manager for PHP (Composer)
-  ];
-
   # VSCodium configuration via Home Manager with profile separation
   programs.vscodium = {
     enable = true;
