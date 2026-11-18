@@ -19,6 +19,14 @@ let
   };
 in
 {
+  # Package set required for RISC-V architecture development, web development, and execution
+  home.packages = with pkgs; [
+    pkgsCross.riscv64-embedded.stdenv.cc  # Cross-compiler toolchain (gcc, as, ld)
+    spike                                 # Official RISC-V ISA simulator
+    php                                   # PHP interpreter for web development
+    phpPackages.composer                  # Dependency manager for PHP (Composer)
+  ];
+
   # VSCodium configuration via Home Manager with profile separation
   programs.vscodium = {
     enable = true;
@@ -27,6 +35,27 @@ in
     profiles.default = {
       extensions = commonExtensions;
       userSettings = commonSettings;
+    };
+
+    # Specialized profile for Web development (PHP, JS, CSS, HTML, tooling)
+    profiles.Web = {
+      extensions = commonExtensions ++ (with pkgs.vscode-extensions; [
+        # PHP Development & Intellisense
+        bmewburn.vscode-intelephense-client
+        # HTML, CSS, JavaScript support
+        ritwickdey.liveserver
+        esbenp.prettier-vscode
+        dbaeumer.vscode-eslint
+        # Tailwind CSS styling support
+        bradlc.vscode-tailwindcss
+      ]);
+      userSettings = commonSettings // {
+        # Format on save using Prettier where applicable
+        "editor.formatOnSave" = true;
+        "[php]" = {
+          "editor.defaultFormatter" = "bmewburn.vscode-intelephense-client";
+        };
+      };
     };
 
     # Specialized profile for Nix language development
